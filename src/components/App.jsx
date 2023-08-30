@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
@@ -10,14 +10,19 @@ import {
   selectContacts,
   addContacts,
   deleteContacts,
+  fetchContacts,
 } from '../redux/contactsSlice.js';
 
 export function App() {
   const filter = useSelector(selectFilter);
   const contacts = useSelector(selectContacts);
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const loginInputId = nanoid();
-
+   useEffect(() => {
+     // Вызовите асинхронное действие fetchContacts при монтировании компонента
+     dispatch(fetchContacts());
+     
+   }, [dispatch]);
 
   const createUser = dataUser => {
     const { name, number } = dataUser;
@@ -29,11 +34,11 @@ export function App() {
     if (contactExaminationthis) {
       return alert(`${dataUser.name} is already in contacts`);
     }
-    dispath(addContacts(newContact));
+    dispatch(addContacts(newContact));
   };
 
   const changeFilter = e => {
-    dispath(setFilter(e.currentTarget.value));
+    dispatch(setFilter(e.currentTarget.value));
   };
 
   const getVisibleContacts = () => {
@@ -45,7 +50,7 @@ export function App() {
   };
 
   const deleteContact = id => {
-     dispath(deleteContacts(id));
+     dispatch(deleteContacts(id));
   };
 
 
