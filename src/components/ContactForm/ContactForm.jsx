@@ -1,32 +1,42 @@
 import React, { useState } from 'react';
 import css from './ContactForm.module.css';
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
+import { useDispatch, useSelector } from 'react-redux';
+import { pushContact, selectContacts } from '../../redux/contactsSlice';
+import SubmitButton from '../SubmitButton/SubmitButton'
 
 export function ContactForm(props) {
   const loginInputId = nanoid();
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts); 
+  
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handeleChangeEmail = e => {
     setName(e.currentTarget.value);
   };
-  const handeleChangeNumber = e => {
-    setNumber(e.currentTarget.value);
+  const handeleChangePhone = e => {
+    setPhone(e.currentTarget.value);
   };
 
   const hendleSubmit = e => {
     e.preventDefault();
-    props.createUser({
-      name: name,
-      number: number,
-    });
+    const newContact = { name, phone };
+   const normalizedNewContact = newContact.name.toLowerCase();
+    const contactExaminationthis = contacts.find(
+      contact => contact.name.toLowerCase() === normalizedNewContact
+    );
+    if (contactExaminationthis) {
+      return alert(`${newContact.name} is already in contacts`);
+    }
+    dispatch(pushContact(newContact));
     resetState();
   };
 
   const resetState = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
   return (
     <form className={css.form} onSubmit={hendleSubmit}>
@@ -45,26 +55,22 @@ export function ContactForm(props) {
         />
       </label>
       <label className={css.label} htmlFor={loginInputId}>
-        Number:
+        Phone:
         <input
           className={css.input}
           id={loginInputId}
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          title="Phone phone must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={number}
-          onChange={handeleChangeNumber}
+          value={phone}
+          onChange={handeleChangePhone}
         />
       </label>
-      <button className={css.submit} type="submit">
-        Add contact
-      </button>
+      <SubmitButton type="submit" />
     </form>
   );
 }
 
-ContactForm.propTypes = {
-  createUser: PropTypes.func.isRequired,
-};
+

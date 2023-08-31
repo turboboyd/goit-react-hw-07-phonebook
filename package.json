@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-06-phonebook",
+  "name": "goit-react-hw-07-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://turboboyd.github.io/goit-react-hw-06-phonebook/",
+  "homepage": "https://turboboyd.github.io/goit-react-hw-07-phonebook/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.3",
@@ -10,10 +10,12 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.0",
     "formik": "^2.4.2",
+    "gsap": "^3.12.2",
     "nanoid": "^4.0.2",
     "normalize.css": "^8.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-icons": "^4.10.1",
     "react-redux": "^8.1.2",
     "react-scripts": "^5.0.1",
     "redux-persist": "^6.0.0",

@@ -1,4 +1,31 @@
+.section {
+  background-color: #aee8dc;
+}
+.container_backgroun {
+  max-width: 1440px;
+  min-height: 100vh;
+  max-height: 2000px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(161, 162, 169, 0.2)),url('../images/phone_background.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  background-size: cover;
+}
 .container {
-    margin: 0 auto;
-    width: 1200px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 70px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.wrapper {
+  width: 400px;
+}
+
+.title {
+  color: #000;
+  font-size: 36px;
+  margin-bottom: 24px;
 }
