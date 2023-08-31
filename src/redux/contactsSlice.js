@@ -117,7 +117,7 @@ export const selectError = state => state.contacts.error;
 const persistConfig = {
   key: 'contacts',
   storage,
-  blacklist: ['contacts'],
+  blacklist: ['status'],
 };
 
 export const persistedContactsReducer = persistReducer(
